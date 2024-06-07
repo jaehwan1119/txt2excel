@@ -1,9 +1,10 @@
 from txt2excel import *
+import numpy as np
 
 # def matching:
 
 def checkIntegrity(txtDF: pd.DataFrame, excelDF: pd.DataFrame) -> list:
-
+    dict_type = ['id', 'type', 'output', 'modify', 'diff_1', 'diff_2']
     dir_path = '/Users/dataly/Desktop/E/'
     excel_name = 'result_excel.xlsx'
 
@@ -24,11 +25,23 @@ def checkIntegrity(txtDF: pd.DataFrame, excelDF: pd.DataFrame) -> list:
     # start_idx(default=0)와 end_idx(default=7)일 때의 id값을 비교해서 같지않을때(텍스트 파일에 expression이 여러개 있음 -> 길이가 길어져야함)
     else:
         txt_path = dir_path + excel_df['id'][start_idx] + '.txt'
-        print(txt_path)
         txt_file = open(txt_path, 'r')
         txt_df = pd.read_csv(txt_file, delimiter='\t', header=None)
-        new_txt_dict = make_dict(txt_df, txt_path)
-        print(new_txt_dict)
+        new_txt_dict = make_dict(txt_df, excel_df['id'][start_idx])
+
+        # 순회하며 txt와 excel의 데이터가 일치하는지 매칭
+        for i in range(start_idx, end_idx):
+            for key in dict_type:
+                if new_txt_dict[key][i] != new_excel_dict[key][i]:
+
+                    print('txt')
+                    print(new_txt_dict[key][i])
+                    print(type(new_txt_dict[key][i]))
+                    print('excel')
+                    print(new_excel_dict[key][i])
+                    print(type(new_excel_dict[key][i]))
+
+
 
     # excel의 DataFrame에서 id순서대로 txt 파일을 매칭
     txt_file = [f for f in os.listdir(dir_path) if f.endswith('.txt')]

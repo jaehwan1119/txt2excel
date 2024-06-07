@@ -21,7 +21,7 @@ for file in txt_file:
 
     filename = os.path.splitext(file)[0]
     new_dict = make_dict(df, filename)
-    write_excel(new_dict, 'result_excel.xlsx', save_path)
+    # write_excel(new_dict, 'result_excel.xlsx', save_path)
 
 end_time = time.time()
 print(end_time - start_time)

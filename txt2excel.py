@@ -1,6 +1,7 @@
 from glob import glob
 import openpyxl
 import pandas as pd
+import numpy as np
 import os
 import re
 import time
@@ -63,9 +64,13 @@ def make_dict(df: pd.DataFrame, filename:str) -> pd.DataFrame:
                 # 만약 '◀' 기호를 발견했다면 이전 라인에 expression이 있다는 뜻 -> 현재 라인과 이전 라인을 저장
                 # exp_list -> expression line
                 queue.append({'type_line':s, 'exp_line':prev_s})
+                print(queue)
+                print()
                 break
             form += s + '\n'
             prev_s = s
+            # print(prev_s)
+            # print()
 
     result_dict = append_dict(result_dict, filename, 'form', form)
 
