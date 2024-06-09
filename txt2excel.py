@@ -64,8 +64,8 @@ def make_dict(df: pd.DataFrame, filename:str) -> pd.DataFrame:
                 # 만약 '◀' 기호를 발견했다면 이전 라인에 expression이 있다는 뜻 -> 현재 라인과 이전 라인을 저장
                 # exp_list -> expression line
                 queue.append({'type_line':s, 'exp_line':prev_s})
-                print(queue)
-                print()
+                # print(queue)
+                # print()
                 break
             form += s + '\n'
             prev_s = s
@@ -81,9 +81,10 @@ def make_dict(df: pd.DataFrame, filename:str) -> pd.DataFrame:
 
     # '◀' 기호가 있는 경우 -> expression 있음 -> 속성 채워넣어야함
     else:
-        insert_list = []
-
+        # insert_list = []
         for qpop in queue: # (qpop type:{'type_line', 'exp_line'} )
+            insert_list = []
+
             # 선택 문장을 저장할 변수 (type:str)
             sentence = qpop['exp_line']
             insert_list.append(sentence)
@@ -95,7 +96,6 @@ def make_dict(df: pd.DataFrame, filename:str) -> pd.DataFrame:
             # type을 저장할 변수 (type:list)
             type_list = find_pattern(qpop['type_line'], 1)
             insert_list.extend(type_list)
-
             for key, value in zip(idx, insert_list):
                 result_dict = append_dict(result_dict, filename, key, value)
     df = pd.DataFrame(result_dict)
