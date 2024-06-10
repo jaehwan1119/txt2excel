@@ -9,6 +9,7 @@ new_file = []
 
 # 텍스트파일 리스트 불러오기
 txt_file = [f for f in os.listdir(dir_path) if f.endswith('.txt')]
+txt_file.sort()
 # g_txt_file = [glob(dir_path, recursive=False)]
 # print(type(g_txt_file))
 # print(g_txt_file)
@@ -20,7 +21,7 @@ for file in txt_file:
     df = pd.read_csv(read_txt, delimiter='\t', header=None)
 
     filename = os.path.splitext(file)[0]
-    new_dict = make_dict(df, filename)
+    new_dict = pd.DataFrame(make_dict(df, filename))
     write_excel(new_dict, 'result_excel.xlsx', save_path)
 
 end_time = time.time()

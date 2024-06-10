@@ -33,7 +33,7 @@ def find_pattern(text:str, case:int) -> list:
     return matches
 
 # dataframe으로부터 데이터를 정제하는 함수
-def make_dict(df: pd.DataFrame, filename:str) -> pd.DataFrame:
+def make_dict(df: pd.DataFrame, filename:str) -> dict:
 
     # 똑같은 형태의 반복이므로 하드코딩
     idx = ['선택 문장', '부적절 발언', '명시성/비명시성', '긍/부정', '강도', '영역']
@@ -98,9 +98,8 @@ def make_dict(df: pd.DataFrame, filename:str) -> pd.DataFrame:
             insert_list.extend(type_list)
             for key, value in zip(idx, insert_list):
                 result_dict = append_dict(result_dict, filename, key, value)
-    df = pd.DataFrame(result_dict)
 
-    return df
+    return result_dict
 
 # Excel파일 작성
 def write_excel(df: pd.DataFrame, filename: str, save_path: str) -> None:
