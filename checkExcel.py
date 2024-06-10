@@ -10,9 +10,9 @@ def checkIntegrity(new_txt_dict: dict, new_excel_dict: dict) -> None:
             if new_txt_dict[type][i] != new_excel_dict[type][idx]:
                 print('='*50)
                 print(f"[Error Loaction: {new_txt_dict['id'][0]}")
-                print('[Error Detail: new_txt_dict]')
+                print('[Error Detail: txtFile]')
                 print(new_txt_dict[type][i])
-                print('[Error Detail: new_excel_dict]')
+                print('[Error Detail: excelFile]')
                 print(new_excel_dict[type][idx])
                 print('=' * 50)
                 print()
@@ -21,7 +21,7 @@ def checkIntegrity(new_txt_dict: dict, new_excel_dict: dict) -> None:
 
 dict_type = ['id', 'type', 'output', 'modify', 'diff_1', 'diff_2']
 dir_path = '/Users/Dataly/Desktop/E/'
-excel_name = 'result_excel.xlsx'
+excel_name = 'result_excel_errortest.xlsx'
 
 # new_excel 순회를 위한 전역변수
 idx=0
