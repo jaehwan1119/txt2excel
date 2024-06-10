@@ -21,6 +21,8 @@ def checkIntegrity(new_txt_dict: dict, new_excel_dict: dict) -> None:
 
 dict_type = ['id', 'type', 'output', 'modify', 'diff_1', 'diff_2']
 dir_path = '/Users/Dataly/Desktop/E/'
+
+# 검사대상 파일명
 excel_name = 'result_excel_errortest.xlsx'
 
 # new_excel 순회를 위한 전역변수
